@@ -30,19 +30,16 @@ fun PantallaBrowser(url: String, onBack: () -> Unit) {
             )
         }
     ) { padding ->
-        // REQUISITO: Integración de una WebView usando AndroidView
         AndroidView(
             modifier = Modifier.padding(padding).fillMaxSize(),
             factory = { context ->
                 WebView(context).apply {
-                    // REQUISITO: Permitir navegación interna
                     webViewClient = WebViewClient()
-                    settings.javaScriptEnabled = true // Opcional, pero necesario para muchas webs modernas
+                    settings.javaScriptEnabled = true
                     loadUrl(url)
                 }
             },
             update = { webView ->
-                // Este bloque se llama cuando la vista se actualiza
                 webView.loadUrl(url)
             }
         )
